@@ -1,10 +1,14 @@
 Attribute VB_Name = "Module1"
 'Provisions
 
-'Déclaration des variables publiques
+'Provisions - Calcul des provisions des titres actions de la CDG
+'Copyright (C) 2012 Yassine Maaroufi - <yassinemaaroufi@gmail.com>
+'DistribuÃ© sous GPLv3 - http://www.gnu.org/copyleft/gpl.html
+
+'Dï¿½claration des variables publiques
 
 'Feuilles
-Public RSH As Worksheet         'Feuille récap
+Public RSH As Worksheet         'Feuille rï¿½cap
 Public CSH As Worksheet         'Feuille composition
 Public VSH As Worksheet         'Feuille cours (valeurs)
 Public DSH As Worksheet         'Feuille dictionnaire de codes
@@ -14,29 +18,29 @@ Public Const PORTEFEUILLES As String = "TRANS PART PLACT"     'Portefeuilles
 
 'Index
 'Feuille CSH - composition
-Public Const ICL As Integer = 4     'Ligne de début du tableau
+Public Const ICL As Integer = 4     'Ligne de dï¿½but du tableau
 Public Const ICT As Integer = 2     'Colonne titre
 Public Const ICC As Integer = 3     'Colonne code
 Public Const ICP As Integer = 4     'Colonne portefeuille
-Public Const ICN As Integer = 5     'Colonne nombre de titres détenus
+Public Const ICN As Integer = 5     'Colonne nombre de titres dï¿½tenus
 Public Const ICA As Integer = 6     'Colonne valeur d'acquisition
 Public Const ICV As Integer = 7     'Colonne cours d'acquisition
 Public Const ICS As Integer = 8     'Colonne stock de provision
 'Feuille VSH - Cours
-Public Const IVL As Integer = 4     'Ligne de début du tableau
-Public Const IVC As Integer = 2     'Colonne de début du tableau (titre)
+Public Const IVL As Integer = 4     'Ligne de dï¿½but du tableau
+Public Const IVC As Integer = 2     'Colonne de dï¿½but du tableau (titre)
 Public Const IVCA As Integer = 3    'Colonne du cours actuel
 Public Const IVCD As Integer = 4    'Colonne dernier cours de cloture (j-1)
 'Feuille DSH - Dictionnaire
-Public Const IDL As Integer = 4     'Ligne de début du tableau
-Public Const IDC As Integer = 2     'Colonne de début du tableau (intitulé)
+Public Const IDL As Integer = 4     'Ligne de dï¿½but du tableau
+Public Const IDC As Integer = 2     'Colonne de dï¿½but du tableau (intitulï¿½)
 Public Const IDCC As Integer = 3    'Colonne code
 
 Sub commencer()
 
-optimisationDébut
+optimisationDï¿½but
 variables
-réinitialiser
+rï¿½initialiser
 
 ''''''''''''''
 '''' Code ''''
@@ -70,7 +74,7 @@ End With
 
 
 '''''''''''''''''''''''''''''''''''''''''''''''
-'''' Met à jour les cours '''''''''''''''''''''
+'''' Met ï¿½ jour les cours '''''''''''''''''''''
 '''''''''''''''''''''''''''''''''''''''''''''''
 'extract_bourse_casablanca
 
@@ -96,7 +100,7 @@ End With
 '''''''''''''''''''''''''''''''''''''''''''''''
 '''' Cherche les cours correspondants '''''''''
 '''''''''''''''''''''''''''''''''''''''''''''''
-' Quel cours utiliser "Dernier cours" ou "Cours de référence"?
+' Quel cours utiliser "Dernier cours" ou "Cours de rï¿½fï¿½rence"?
 If Worksheets("Cours").OptionButtonCoursActuel.Value = True Then colonneCours = 3
 If Worksheets("Cours").OptionButtonCoursCloture.Value = True Then colonneCours = 4
 
@@ -118,7 +122,7 @@ Next i
 End With
 
 '''''''''''''''''''''''''''''''''''''''''''''''
-'''' Dessine le tableau récapitulatif '''''''''
+'''' Dessine le tableau rï¿½capitulatif '''''''''
 '''''''''''''''''''''''''''''''''''''''''''''''
 With RSH
 x = 5
@@ -126,16 +130,16 @@ For Each i In Split(PORTEFEUILLES)
 
     .Cells(x, 2) = i        'Nom du portefeuille (titre)
     .Cells(x, 2).Font.Bold = True
-    titres = "Titre,Nb titres,Valeur d'acquisition,Cours d'acquisition,Cours valorisation,Valeur marché,+/- value latente,VM/VC,Provision fin,Dotation,Reprise"
+    titres = "Titre,Nb titres,Valeur d'acquisition,Cours d'acquisition,Cours valorisation,Valeur marchï¿½,+/- value latente,VM/VC,Provision fin,Dotation,Reprise"
     'index tableau
     irt = 2         'Colonne titre
     irn = 3         'Colonne nombre de titres
     irva = 4        'Colonne valeur d'acquisition
     irca = 5        'Colonne cours d'acquisition
     ircv = 6        'Colonne cours valorisation
-    irvm = 7        'Colonne valeur marché
+    irvm = 7        'Colonne valeur marchï¿½
     irpv = 8        'Colonne plus/moins value latente
-    irvc = 9        'Colonne valeur marché / valeur comptable
+    irvc = 9        'Colonne valeur marchï¿½ / valeur comptable
     irpr = 10       'Colonne provision
     irdt = 11       'Colonne dotation
     irre = 12       'Colonne reprise
@@ -252,7 +256,7 @@ End With
 
 End Function
 
-Sub optimisationDébut()
+Sub optimisationDï¿½but()
 
 Application.DisplayStatusBar = False
 Application.EnableEvents = False
@@ -273,7 +277,7 @@ End Sub
 
 Sub variables()
 
-Set RSH = Worksheets("Récap")
+Set RSH = Worksheets("Rï¿½cap")
 Set CSH = Worksheets("Composition")
 Set VSH = Worksheets("Cours")
 Set DSH = Worksheets("Dictionnaire codes")
@@ -283,7 +287,7 @@ Set DSH = Worksheets("Dictionnaire codes")
 'ICT = 2     'Colonne titre
 'ICC = 3     'Colonne code
 'ICP = 4     'Colonne portefeuille
-'ICN = 5     'Colonne nombre de titres détenus
+'ICN = 5     'Colonne nombre de titres dï¿½tenus
 'ICA = 6     'Colonne valeur d'acquisition
 'ICV = 7     'Colonne cours d'acquisition
 'ICS = 8     'Colonne stock de provision
@@ -292,7 +296,7 @@ Set DSH = Worksheets("Dictionnaire codes")
 
 End Sub
 
-Sub réinitialiser()
+Sub rï¿½initialiser()
 
 RSH.Range("A1:L1000").Clear
 RSH.Range("A1:L1000").ClearFormats
@@ -316,10 +320,10 @@ Sub extract_bourse_casablanca()
     'Titre
     re.pattern = "id=""CoursValeurs1_Actionl1_ListActionSecteur_ctl[0-9]{2}_TableAction1_RptrAction_ctl[0-9]{2}_Label11?"">.*?</span>"
     Set titres = re.Execute(stri)
-    'Dernier cours (différé 15 minutes)
+    'Dernier cours (diffï¿½rï¿½ 15 minutes)
     re.pattern = "id=""CoursValeurs1_Actionl1_ListActionSecteur_ctl[0-9]{2}_TableAction1_RptrAction_ctl[0-9]{2}_Label31?"">.*?</span>"
     Set cours = re.Execute(stri)
-    'Cours de référence (cours de cloture j-1)
+    'Cours de rï¿½fï¿½rence (cours de cloture j-1)
     re.pattern = "id=""CoursValeurs1_Actionl1_ListActionSecteur_ctl[0-9]{2}_TableAction1_RptrAction_ctl[0-9]{2}_Label41?"">.*?</span>"
     Set coursCloture = re.Execute(stri)
     
@@ -367,7 +371,7 @@ Sub extract_bourse_casablanca()
     j = IVL
     For Each i In cours
         re.pattern = "[0-9\s]+,[0-9]{2}"
-        re.pattern = "[0-9]? ?[0-9]+,[0-9]{2}"
+        re.pattern = "[0-9]?ï¿½?[0-9]+,[0-9]{2}"
         .Cells(j, IVCA) = CDbl(re.Execute(i)(0))
         .Cells(j, IVCA).NumberFormat = "#,##0.00"
         j = j + 1
@@ -378,7 +382,7 @@ Sub extract_bourse_casablanca()
     j = IVL
     For Each i In coursCloture
         re.pattern = "[0-9\s]+,[0-9]{2}"
-        re.pattern = "[0-9]? ?[0-9]+,[0-9]{2}"
+        re.pattern = "[0-9]?ï¿½?[0-9]+,[0-9]{2}"
         .Cells(j, IVCD) = CDbl(re.Execute(i)(0))
         .Cells(j, IVCD).NumberFormat = "#,##0.00"
         j = j + 1
@@ -460,7 +464,7 @@ Sub extract_bmce()
         j = j + 1
     Next i
     
-    re.pattern = "Date de mise à jour .*?</span>"
+    re.pattern = "Date de mise ï¿½ jour .*?</span>"
     results = re.Execute(stri)(0)
     re.pattern = "[0-9]{2}/[0-9]{2}/[0-9]{4}"
     .Cells(3, 5) = re.Execute(results)(0)
